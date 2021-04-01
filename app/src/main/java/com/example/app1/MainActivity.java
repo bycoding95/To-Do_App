@@ -32,14 +32,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // initialize listView and button with the id-number
         listView = findViewById(R.id.listView);
         button = findViewById(R.id.button);
 
+        // button invokes setOnClickListener-method when the view is clicked
         button.setOnClickListener(new View.OnClickListener() {
 
 
             @Override
             public void onClick(View view) {
+
+                // invokes the addItem-method and adds a new item in the list
                 addItem(view);
             }
         });
@@ -67,15 +71,17 @@ public class MainActivity extends AppCompatActivity {
 
     // Fügt neuen Eintrag ein
     private void addItem(View view){
-        EditText input = findViewById(R.id.editText); // initialisiert input mit editText Textfeld
-        String itemText = input.getText().toString(); // nimmt den Text von input wandelt in String um und speichert in itemText
+        EditText input = findViewById(R.id.editText); // initialize input with editText textfield
+        String itemText = input.getText().toString(); // gets the text from input converts to a String and finally save it in itemText
 
-        if(!(itemText.equals(""))){
+        // checks if the itemText is not empty
+        if(!(itemText.equals(""))){ // if true -> adds the itemText to the listView
             itemsAdapter.add(itemText);
-            input.setText("");
+            input.setText(""); // erases the text for a new input
         }
-        else{
+        else{   // if false ( if itemText is empty) -> outputs a text
             Toast.makeText(getApplicationContext(), "Please enter text...", LENGTH_LONG).show();
+
         }
     }
 }
